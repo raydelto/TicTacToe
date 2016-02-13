@@ -1,5 +1,7 @@
 var res = {
-    HelloWorld_png : "res/HelloWorld.png",
+    O_png : "res/O.png",
+    X_png : "res/X.png",
+    tablero_png : "res/tablero.png"
 };
 
 var g_resources = [];
