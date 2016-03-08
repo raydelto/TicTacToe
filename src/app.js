@@ -1,4 +1,3 @@
-
 var HelloWorldLayer = cc.Layer.extend({
     sprite : null,
     pieza : null,
@@ -11,9 +10,7 @@ var HelloWorldLayer = cc.Layer.extend({
         var juego = event.getCurrentTarget();
         var arr = juego.tabla;
         console.log(arr);
-        if(juego.jugadas>=9){
-            return "tie";
-        }
+        
         if(arr[0]===arr[1] && arr[1]===arr[2]){
             return arr[0];
         } else if (arr[3]===arr[4] && arr[4]===arr[5]) {
@@ -31,64 +28,65 @@ var HelloWorldLayer = cc.Layer.extend({
         } else if (arr[6]===arr[4] && arr[4]===arr[2] ){
             return arr[2];
         }
+        if(juego.jugadas>=9){
+            return "tie";
+        }
         return 0;
     },
     
     RealizarJugada : function(location, event)
     {
-        var juego = event.getCurrentTarget();
-		var prox = "X";
-        if(juego.turno=== "X"){
-            prox = "O";
-        }
+        var evento = event.getCurrentTarget();
+		var jugadores = ["X", "O"];
         var ubicacion = location.getLocation();
         var x = ubicacion.x;
         var y = ubicacion.y;
-        if(x >= 342 && x < 433 && y >= 323 && y < 426 && juego.ceros[0]===null){
-            juego.asignarPos(385,376,juego.turno);
-            juego.tabla[0]=juego.turno;
-            juego.turno=prox;
-            juego.jugadas++;
-        }else if(x >= 433 && x < 526 && y >= 323 && y < 426 && juego.tabla[1]===null){
-            juego.asignarPos(481,376,juego.turno);
-            juego.tabla[1]=juego.turno;
-            juego.turno=prox;
-            juego.jugadas++;
-        }else if(x >= 526 && x < 615 && y >= 323 && y < 426 && juego.tabla[2]===null){
-            juego.asignarPos(580,376,juego.turno);
-            juego.tabla[2]=juego.turno;
-            juego.turno=prox;
-            juego.jugadas++;
-        }else if(x >= 342 && x < 433 && y >= 221 && y < 323 && juego.tabla[3]==null){
-            juego.asignarPos(385,266,juego.turno);
-            juego.tabla[3]=juego.turno;
-            juego.turno=prox;
-            juego.jugadas++;
-        }else if(x >= 433 && x < 526 && y >= 221 && y < 323 && juego.tabla[4]===null){
-            juego.asignarPos(481,266,juego.turno);
-            juego.tabla[4]=juego.turno;
-            juego.turno=prox;
-        }else if(x >= 526 && x < 615 && y >= 221 && y < 323 && juego.tabla[5]===null){
-            juego.asignarPos(580,266,juego.turno);
-            juego.tabla[5]=juego.turno;
-            juego.turno=prox;
-            juego.jugadas++;
-        }else if(x >= 342 && x < 433 && y >= 116 && y < 221 && juego.tabla[6]===null){
-            juego.asignarPos(385,168,juego.turno);
-            juego.tabla[6]=juego.turno;
-            juego.turno=prox;
-            juego.jugadas++;
-        }else if(x >= 433 && x < 526 && y >= 116 && y < 221 && juego.tabla[7]===null){
-            juego.asignarPos(481,168,juego.turno);
-            juego.tabla[7]=juego.turno;
-            juego.turno=prox;
-        }else if(x >= 526 && x < 615 && y >= 116 && y < 221 && juego.tabla[8]===null){
-            juego.asignarPos(580,168,juego.turno);
-            juego.tabla[8]=juego.turno;
-            juego.turno=prox;
+        evento.turno = jugadores[evento.jugadas%2];
+
+        if(x >= 342 && x < 433 && y >= 323 && y < 426 && evento.tabla[0]==null){
+            evento.asignarPos(385,376,evento.turno);
+            evento.tabla[0]=evento.turno;
+            evento.jugadas++;
+        }else if(x >= 433 && x < 526 && y >= 323 && y < 426 && evento.tabla[1]==null){
+            evento.asignarPos(481,376,evento.turno);
+            evento.tabla[1]=evento.turno;
+             
+            evento.jugadas++;
+        }else if(x >= 526 && x < 615 && y >= 323 && y < 426 && evento.tabla[2]==null){
+            evento.asignarPos(580,376,evento.turno);
+            evento.tabla[2]=evento.turno;
+             
+            evento.jugadas++;
+        }else if(x >= 342 && x < 433 && y >= 221 && y < 323 && evento.tabla[3]==null){
+            evento.asignarPos(385,266,evento.turno);
+            evento.tabla[3]=evento.turno;
+             
+            evento.jugadas++;
+        }else if(x >= 433 && x < 526 && y >= 221 && y < 323 && evento.tabla[4]==null){
+            evento.asignarPos(481,266,evento.turno);
+            evento.tabla[4]=evento.turno;
+            evento.jugadas++;
+        }else if(x >= 526 && x < 615 && y >= 221 && y < 323 && evento.tabla[5]==null){
+            evento.asignarPos(580,266,evento.turno);
+            evento.tabla[5]=evento.turno;
+             
+            evento.jugadas++;
+        }else if(x >= 342 && x < 433 && y >= 116 && y < 221 && evento.tabla[6]==null){
+            evento.asignarPos(385,168,evento.turno);
+            evento.tabla[6]=evento.turno;
+             
+            evento.jugadas++;
+        }else if(x >= 433 && x < 526 && y >= 116 && y < 221 && evento.tabla[7]==null){
+            evento.asignarPos(481,168,evento.turno);
+            evento.tabla[7]=evento.turno;
+             evento.jugadas++;
+        }else if(x >= 526 && x < 615 && y >= 116 && y < 221 && evento.tabla[8]==null){
+            evento.asignarPos(580,168,evento.turno);
+            evento.tabla[8]=evento.turno;
+             evento.jugadas++;
         }
        
-        var ganador = juego.check(event);
+        var ganador = evento.check(event);
         if(ganador==="X") {
             alert("Ha ganado el jugador X");
             
@@ -104,14 +102,13 @@ var HelloWorldLayer = cc.Layer.extend({
     },
     
     asignarPos : function(x,y,turn){
-        if(turn==="X"){
-            juego.pieza = new cc.Sprite(res.X_png);
-        }else if(turn==="O"){
-            juego.pieza = new cc.Sprite(res.O_png);
+        if(turn=="X"){
+            piezas = new cc.Sprite(res.X_png);
+        }else if(turn=="O"){
+            piezas = new cc.Sprite(res.O_png);
         }
-        juego.pieza.setPosition(x,y );
-        this.addChild(pieza, 1);
-        console.log("Se creo un elemento del tipo " + turn  +" en " + Math.floor(x) + "," + Math.floor(y));
+        piezas.setPosition(x,y);
+        this.addChild(piezas, 1);
 },
     
     ctor:function () {
@@ -129,14 +126,11 @@ var HelloWorldLayer = cc.Layer.extend({
         // 3. add your codes below...
         // add a label shows "Hello World"
         // create and initialize a label
-        var helloLabel = new cc.LabelTTF("TicTacToe V1", "Arial", 38);
+        var helloLabel = new cc.LabelTTF("TicTacToe", "BOLDfinger", 38);
          // position the label on the center of the screen
-         var currentPlayer = new cc.LabelTTF("juego", "Consolas", 20);
-         this.addChild(currentPlayer, 1);
          helloLabel.x = size.width / 2;
-         helloLabel.y = size.height / 2 + 200;
-         currentPlayer.x = helloLabel.x;
-         currentPlayer.y = helloLabel.y - 50;
+         helloLabel.y = size.height / 2 + 190;
+
          // add the label as a child to this layer
          this.addChild(helloLabel, 1);
         
@@ -151,19 +145,18 @@ var HelloWorldLayer = cc.Layer.extend({
         
         cc.eventManager.addListener({
 			event: cc.EventListener.TOUCH_ONE_BY_ONE,
-			onTouchBegan: this.RealizarJugada,
+			onTouchBegan: this.RealizarJugada
 			
 		}, this);
         
         return true;
-    },
+    }
 });
 
 var HelloWorldScene = cc.Scene.extend({
     onEnter:function () {
-        this._super(),
-        var layer = new HelloWorldLayer(),
-        this.addChild(layer),
+        this._super();
+        var layer = new HelloWorldLayer();
+        this.addChild(layer);
     }
 });
-
