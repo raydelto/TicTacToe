@@ -1,6 +1,8 @@
 
 var HelloWorldLayer = cc.Layer.extend({
     sprite:null,
+    
+
     ctor:function () {
         //////////////////////////////
         // 1. super init first
@@ -21,6 +23,8 @@ var HelloWorldLayer = cc.Layer.extend({
         helloLabel.x = size.width / 2;
         helloLabel.y = size.height / 2 + 200;
         // add the label as a child to this layer
+        
+        
         this.addChild(helloLabel, 5);
 
         // add "HelloWorld" splash screen"
@@ -30,7 +34,14 @@ var HelloWorldLayer = cc.Layer.extend({
             y: size.height / 2
         });
         this.addChild(this.sprite, 0);
-
+        
+        cc.eventManager.addListener({
+			event: cc.EventListener.TOUCH_ONE_BY_ONE,
+			onTouchBegan: function(){console.log("blah");
+                                    }
+			
+		}, this);
+        
         return true;
     }
 });
