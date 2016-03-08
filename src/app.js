@@ -132,13 +132,13 @@ var HelloWorldLayer = cc.Layer.extend({
         var helloLabel = new cc.LabelTTF("TicTacToe V1", "Arial", 38);
          // position the label on the center of the screen
          var currentPlayer = new cc.LabelTTF("juego", "Consolas", 20);
-         this.addChild(currentPlayer, 5);
+         this.addChild(currentPlayer, 1);
          helloLabel.x = size.width / 2;
          helloLabel.y = size.height / 2 + 200;
          currentPlayer.x = helloLabel.x;
          currentPlayer.y = helloLabel.y - 50;
          // add the label as a child to this layer
-         this.addChild(helloLabel, 5);
+         this.addChild(helloLabel, 1);
         
 
         // add "HelloWorld" splash screen"
