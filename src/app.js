@@ -11,21 +11,21 @@ var HelloWorldLayer = cc.Layer.extend({
         var juego = event.getCurrentTarget();
         var arr = juego.tabla;
         console.log(arr);
-        if(arr[0]==arr[1] && arr[1]==arr[2]){
+        if(arr[0]===arr[1] && arr[1]===arr[2]){
             return arr[0];
-        }else if(arr[3]==arr[4] && arr[4]==arr[5]){
+        }else if(arr[3]===arr[4] && arr[4]===arr[5]){
             return arr[3];
-        }else if(arr[6]==arr[7] && arr[7]==arr[8]){
+        }else if(arr[6]===arr[7] && arr[7]===arr[8]){
             return arr[6];
-        }else if(arr[0]==arr[3] && arr[3]==arr[6]){
+        }else if(arr[0]===arr[3] && arr[3]===arr[6]){
             return arr[0];
-        }else if(arr[1]==arr[4] && arr[4]==arr[7]){
+        }else if(arr[1]===arr[4] && arr[4]===arr[7]){
             return arr[1];
-        }else if(arr[2]==arr[5] && arr[5]==arr[8]){
+        }else if(arr[2]===arr[5] && arr[5]===arr[8]){
             return arr[2];
-        }else if(arr[0]==arr[4] && arr[4]==arr[8]){
+        }else if(arr[0]===arr[4] && arr[4]===arr[8]){
             return arr[0];
-        }else if(arr[6]==arr[4] && arr[4]==arr[2]){
+        }else if(arr[6]===arr[4] && arr[4]===arr[2]){
             return arr[2];
         }
         return 0;
@@ -35,7 +35,7 @@ var HelloWorldLayer = cc.Layer.extend({
     {
         var juego = event.getCurrentTarget();
 		var prox = "";
-        if(juego.turno== "X"){
+        if(juego.turno=== "X"){
                 prox = "O";
         }else{ 
             prox = "X";
@@ -43,15 +43,15 @@ var HelloWorldLayer = cc.Layer.extend({
         var ubicacion = location.getLocation();
         var x = ubicacion.x;
         var y = ubicacion.y;
-        if(x >= 342 && x < 433 && y >= 323 && y < 426 && juego.ceros[0]==null){
+        if(x >= 342 && x < 433 && y >= 323 && y < 426 && juego.ceros[0]===null){
             juego.asignarPos(385,376,juego.turno);
             juego.ceros[0]=juego.turno;
             juego.turno=prox;
-        }else if(x >= 433 && x < 526 && y >= 323 && y < 426 && juego.tabla[1]==null){
+        }else if(x >= 433 && x < 526 && y >= 323 && y < 426 && juego.tabla[1]===null){
             juego.asignarPos(481,376,juego.turno);
             juego.tabla[1]=juego.turno;
             juego.turno=prox;
-        }else if(x >= 526 && x < 615 && y >= 323 && y < 426 && juego.tabla[2]==null){
+        }else if(x >= 526 && x < 615 && y >= 323 && y < 426 && juego.tabla[2]===null){
             juego.asignarPos(580,376,juego.turno);
             juego.tabla[2]=juego.turno;
             juego.turno=prox;
@@ -59,35 +59,27 @@ var HelloWorldLayer = cc.Layer.extend({
             juego.asignarPos(385,266,juego.turno);
             juego.tabla[3]=juego.turno;
             juego.turno=prox;
-        }else if(x >= 433 && x < 526 && y >= 221 && y < 323 && juego.tabla[4]==null){
+        }else if(x >= 433 && x < 526 && y >= 221 && y < 323 && juego.tabla[4]===null){
             juego.asignarPos(481,266,juego.turno);
             juego.tabla[4]=juego.turno;
             juego.turno=prox;
-        }
-        else if(x >= 526 && x < 615 && y >= 221 && y < 323 && juego.tabla[5]==null)
-            {
+        }else if(x >= 526 && x < 615 && y >= 221 && y < 323 && juego.tabla[5]===null){
                 juego.asignarPos(580,266,juego.turno);
                 juego.tabla[5]=juego.turno;
                 juego.turno=prox;
-            }
-        else if(x >= 342 && x < 433 && y >= 116 && y < 221 && juego.tabla[6]==null)
-            {
+        }else if(x >= 342 && x < 433 && y >= 116 && y < 221 && juego.tabla[6]===null){
                 juego.asignarPos(385,168,juego.turno);
                 juego.tabla[6]=juego.turno;
                 juego.turno=prox;
-            }
-        else if(x >= 433 && x < 526 && y >= 116 && y < 221 && juego.tabla[7]==null)
-            {
+        }else if(x >= 433 && x < 526 && y >= 116 && y < 221 && juego.tabla[7]===null){
                 juego.asignarPos(481,168,juego.turno);
                 juego.tabla[7]=juego.turno;
                 juego.turno=prox;
-            }
-        else if(x >= 526 && x < 615 && y >= 116 && y < 221 && juego.tabla[8]==null)
-            {
+        }else if(x >= 526 && x < 615 && y >= 116 && y < 221 && juego.tabla[8]===null){
                 juego.asignarPos(580,168,juego.turno);
                 juego.tabla[8]=juego.turno;
                 juego.turno=prox;
-            }
+        }
        
         var ganador = juego.verificar(event);
         if(ganador==="X") {
@@ -102,12 +94,12 @@ var HelloWorldLayer = cc.Layer.extend({
     };
     
     asignarPos : function(x,y,turn){
-        if(turn=="X"){
-            pieza = new cc.Sprite(res.X_png);
-        }else if(turn=="O"){
-            pieza = new cc.Sprite(res.O_png);
+        if(turn==="X"){
+            juego.pieza = new cc.Sprite(res.X_png);
+        }else if(turn==="O"){
+            juego.pieza = new cc.Sprite(res.O_png);
         }
-        pieza.setPosition(x,y );
+        juego.pieza.setPosition(x,y );
         this.addChild(pieza, 1);
         console.log("Se creo un elemento del tipo " + turn  +" en " + Math.floor(x) + "," + Math.floor(y));
 };
